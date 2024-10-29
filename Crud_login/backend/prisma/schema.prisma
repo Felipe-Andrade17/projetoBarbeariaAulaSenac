@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CadastrarUsuarios{
+
+  id String @id @default(uuid())
+  nome String
+  email String
+  password String
+
+  dataCriacao DateTime @default(now()) @db.Timestamptz()
+  dataAlteracao DateTime @updatedAt @db.Timestamptz()
+
+  grupos CadastrarGrupos @relation(fields: [idGrupos], references: [id])
+  idGrupos String @default("411340ea-5571-41d9-97d8-1ee3101fcd38")
+}
+
+model CadastrarGrupos{
+
+   id String @id @default(uuid())
+   nome String @unique
+
+   dataCriacao DateTime @default(now()) @db.Timestamptz()
+   dataAlteracao DateTime @updatedAt @db.Timestamptz()
+
+   usuarios CadastrarUsuarios[]
+}
