@@ -7,9 +7,11 @@ export default function CadastrarUsuarios(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    async function cadastroUsuarios(){
+    async function cadastroUsuarios(e){
 
         try{
+
+            e.preventDefault();
 
             const resposta = await apiLocal.post('/CadastrarUsuarios',{
 
