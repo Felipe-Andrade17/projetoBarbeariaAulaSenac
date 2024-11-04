@@ -17,7 +17,7 @@ class usuariosServices{
 
                 nome: nome,
                 email: email,
-                password: password
+                password: password,
             }
         })
 
@@ -45,6 +45,19 @@ class usuariosServices{
         });
 
         return resposta;
+    }
+
+    async apagarUsuarios(id: string){
+
+        await prismaClient.cadastrarUsuarios.delete({
+
+            where:{
+
+                id:id
+            }
+        })
+
+        return ({dados: 'Registro Apagado com sucesso!'});
     }
 }
 

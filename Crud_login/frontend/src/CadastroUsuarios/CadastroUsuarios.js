@@ -20,7 +20,7 @@ export default function CadastrarUsuarios(){
                 password
             });
 
-            console(resposta)
+            alert(resposta.data.dados);
 
         }catch (err){
 

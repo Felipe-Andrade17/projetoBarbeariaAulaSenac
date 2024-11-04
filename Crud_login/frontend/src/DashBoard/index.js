@@ -19,7 +19,14 @@ export default function DashBoard(){
 
         consultarDadosUsuarios();
 
-    }, [])
+    }, [dadosUsuarios])
+
+        async function apagarUsuarios(id){
+
+            await apiLocal.delete(`/ApagarUsuarios/${id}`);
+            alert("Dados Apagados com sucesso!")
+
+        }
 
     return(
         <div>
@@ -35,7 +42,12 @@ export default function DashBoard(){
                     <p>Id: {item.id}</p>
                     <p>Nome: {item.nome}</p>
                     <p>E-mail: {item.email}</p>
-                    <button>Apagar item</button>
+                    <p>
+                        {!item.grupos ? "Sem Grupo" : item.grupos.nome}
+                    </p>
+
+                    <button type='Submit' onClick={() => apagarUsuarios(item.id)}>Apagar item</button>
+
                     <button>Editar item</button>
 
                 </div>

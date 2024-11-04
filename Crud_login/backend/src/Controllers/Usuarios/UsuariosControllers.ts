@@ -26,6 +26,17 @@ class UsuariosControllers{
         return res.json(resposta);
 
     }
+
+    async apagarUsuarios(req: Request, res: Response){
+
+        const {id} = req.params;
+        const deletarUsuarios = new usuariosServices();
+
+        const resposta = await deletarUsuarios.apagarUsuarios(id);
+
+        return res.json(resposta);
+        
+    }
 }
 
 export {UsuariosControllers}

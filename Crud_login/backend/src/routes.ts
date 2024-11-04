@@ -7,6 +7,7 @@ const router = Router()
 
 router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios);
 router.post('/CadastrarGrupos', new GruposControllers().cadastrarGrupos);
+router.delete('/ApagarUsuarios/:id', new UsuariosControllers().apagarUsuarios)
 
 router.get('/ConsultarUsuarios', new UsuariosControllers().consultarUsuarios);
 
