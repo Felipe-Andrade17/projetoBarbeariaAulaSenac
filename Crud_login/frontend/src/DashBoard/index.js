@@ -23,9 +23,15 @@ export default function DashBoard(){
 
         async function apagarUsuarios(id){
 
-            await apiLocal.delete(`/ApagarUsuarios/${id}`);
-            alert("Dados Apagados com sucesso!")
+            try{
 
+                await apiLocal.delete(`/ApagarUsuarios/${id}`);
+                 alert("Dados Apagados com sucesso!");
+
+            }catch(err){
+
+                alert("Erro ao comunicar com o backend")
+            }
         }
 
     return(
