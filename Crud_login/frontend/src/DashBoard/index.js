@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 
 import apiLocal from '../Api/apiLocal';
 
@@ -54,12 +55,12 @@ export default function DashBoard(){
 
                     <button type='Submit' onClick={() => apagarUsuarios(item.id)}>Apagar item</button>
 
-                    <button>Editar item</button>
+                   <Link to ={`/EditarUsuarios/${item.id}`}>Editar</Link>
 
                 </div>
             )
 
-        })}
+        })} 
 
         </div>
     )

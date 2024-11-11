@@ -27,6 +27,16 @@ class UsuariosControllers{
 
     }
 
+    async consultarUsuarioUnico(req: Request, res: Response){
+
+        const {id} = req.body;
+        const buscarDados = new usuariosServices();
+        const resposta = await buscarDados.consultarUsuarioUnico(id);
+
+        return res.json(resposta);
+    }
+
+
     async apagarUsuarios(req: Request, res: Response){
 
         const {id} = req.params;
@@ -37,6 +47,8 @@ class UsuariosControllers{
         return res.json(resposta);
         
     }
+
+
 }
 
 export {UsuariosControllers}
