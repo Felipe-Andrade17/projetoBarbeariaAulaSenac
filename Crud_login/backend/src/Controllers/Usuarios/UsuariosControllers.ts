@@ -36,6 +36,20 @@ class UsuariosControllers{
         return res.json(resposta);
     }
 
+    async alterarDadosUsuarios(req: Request, res: Response){
+
+        const {id, nome, email} = req.body;
+        const buscarDados = new usuariosServices();
+        const resposta = await buscarDados.alterarDadosUsuario({
+
+            id,
+            nome,
+            email
+
+    })
+
+        return res.json(resposta)
+    };
 
     async apagarUsuarios(req: Request, res: Response){
 
@@ -47,7 +61,6 @@ class UsuariosControllers{
         return res.json(resposta);
         
     }
-
 
 }
 

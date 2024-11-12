@@ -7,45 +7,77 @@ import apiLocal from '../Api/apiLocal';
 export default function EditarUsuarios() {
 
     const { id } = useParams();
-
-    const [dadosUsuario, setDadosUsuario] = useState(['']);
+    
+    const [nome, setNome] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
 
         async function consultarDadosUsuarioUnico() {
 
-            const resposta = await apiLocal.post(`/ConsultarUsuarioUnico/:${id}`)
+            const resposta = await apiLocal.post('/ConsultarUsuarioUnico',{
 
-            setDadosUsuario(resposta.data);
+                id
+            })
 
+            setNome(resposta.data.nome);
+            setEmail(resposta.data.email);
+            setPassword(resposta.data.password);
         }
 
         consultarDadosUsuarioUnico();
 
-    }, [dadosUsuario])
+    },[])
+
+    async function enviarAlteracao(e){
+
+        try{
+
+            e.preventDefault();
+
+            console.log(id)
+
+           const resposta = await apiLocal.put('/AlterarDadosUsuario',{
+
+                id,
+                nome,
+                email
+            });
+
+            console.log(resposta);
+
+        }catch(err){
+
+            alert("Erro ao comunicar com o servidor");
+        }
+       
+    }
 
     return (
 
-        <div>
+        <div className="editar-usuarios">
+        <h1>Editar Usuários</h1>
+        <p>ID do usuário: {id}</p>
+        <form onSubmit={enviarAlteracao}>
+            <input type="text"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+             />
 
-            <h1>Editar Usuários</h1>
+            <input type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            />
 
-            {dadosUsuario.map((item) => {
+            <input type="password"
+            disabled
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            />
 
-                return (
-
-                    <div>
-
-                        <p>Nome: {item.nome}</p>
-                        <p>E-mail: {item.email}</p>
-
-                        <Link to={`/EditarUsuarios/${item.id}`}>Editar</Link>
-
-                    </div>
-                )
-
-            })}
-
-        </div>
+            <button>Enviar</button>
+        </form>
+    </div>
     )
 }

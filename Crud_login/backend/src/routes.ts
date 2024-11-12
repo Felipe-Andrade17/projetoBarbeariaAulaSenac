@@ -9,6 +9,8 @@ router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios);
 router.post('/CadastrarGrupos', new GruposControllers().cadastrarGrupos);
 router.post('/ConsultarUsuarioUnico', new UsuariosControllers().consultarUsuarioUnico);
 
+router.put('/AlterarDadosUsuario', new UsuariosControllers().alterarDadosUsuarios); 
+
 router.delete('/ApagarUsuarios/:id', new UsuariosControllers().apagarUsuarios)
 
 router.get('/ConsultarUsuarios', new UsuariosControllers().consultarUsuarios);
