@@ -1,12 +1,20 @@
-import React from 'react'
-
-import Rotas from './Routes'
+import React from 'react';
+import Rotas from './Routes';
+import AuthProvider from './Contexts/authContexts';
 
 export default function App() {
+
   return (
-    <div>
-      <Rotas />
-    </div>
+
+    <AuthProvider>
+
+      <div>
+
+        <Rotas />
+
+      </div>
+
+    </AuthProvider>
       
   )
 }
