@@ -8,10 +8,12 @@ import { estaAutenticado } from './middleware/estaAutenticado';
 
 const router = Router()
 
-router.post('/CadastrarUsuarios', estaAutenticado, new UsuariosControllers().cadastrarUsuarios);
+router.post('/CadastrarUsuarios', new UsuariosControllers().cadastrarUsuarios);
 router.post('/CadastrarGrupos', estaAutenticado, new GruposControllers().cadastrarGrupos);
 router.post('/ConsultarUsuarioUnico', estaAutenticado, new UsuariosControllers().consultarUsuarioUnico);
 router.post('/LoginUsuarios', new LoginUsuariosControllers().loginUsuarios);
+
+router.get('/VerificaToken', estaAutenticado, new LoginUsuariosControllers().verificaToken);
 
 router.put('/AlterarDadosUsuario',estaAutenticado, new UsuariosControllers().alterarDadosUsuarios); 
 

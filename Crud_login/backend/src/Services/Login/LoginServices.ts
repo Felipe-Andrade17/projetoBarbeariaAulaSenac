@@ -52,6 +52,29 @@ class LoginServices{
             token: token
         }
     }
+
+    async verificaToken(id: string){
+
+        const usuario = await prismaClient.cadastrarUsuarios.findUnique({
+
+            where:{
+
+                id: id
+            },
+
+             select:{
+
+                id: true
+            }
+        });
+
+        if(!usuario){
+
+            throw new Error('Usuário ou senha incorretos!')
+        }
+
+        return usuario;
+    }
 }
 
 export default LoginServices;
